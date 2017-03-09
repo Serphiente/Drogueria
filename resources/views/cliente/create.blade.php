@@ -10,8 +10,15 @@
                 <div class="panel-body">
                 {!!Form::open(['route'=>'cliente.store'])!!}
                 <div class="form-group">
-                    {!!Form::label('id')!!}
-                    {!!Form::text('id',null,['class'=>'form-control', 'placeholder'=>'Ingrese el id'])!!}
+                    {!!Form::label('id')!!}<br>
+
+                    @php
+                    $codigo = print_r($json['Listado']['0']['Codigo'],true);
+                    $pos = strpos($codigo, "-");
+                    $codigo = substr($codigo, 0, $pos);
+                    @endphp
+
+                    {!!Form::text('id',$codigo,['class'=>'form-control', 'placeholder'=>'Ingrese el id'])!!}
                 </div>
                  <div class="form-group">
                   
