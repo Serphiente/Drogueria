@@ -7,7 +7,7 @@
 #
 # Host: www.drogueriaconcepcion.cl (MySQL 5.5.5-10.0.29-MariaDB)
 # Base de datos: drogueri_bd_new
-# Tiempo de Generación: 2017-03-09 18:56:36 +0000
+# Tiempo de Generación: 2017-03-09 20:40:13 +0000
 # ************************************************************
 
 
@@ -444,10 +444,9 @@ DROP TABLE IF EXISTS `contacto_clientes`;
 
 CREATE TABLE `contacto_clientes` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `apellido` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `telefono` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `clientes_id` int(10) unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -455,6 +454,25 @@ CREATE TABLE `contacto_clientes` (
   KEY `fk_contacto_cliente_cliente1_idx` (`clientes_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+LOCK TABLES `contacto_clientes` WRITE;
+/*!40000 ALTER TABLE `contacto_clientes` DISABLE KEYS */;
+
+INSERT INTO `contacto_clientes` (`id`, `nombre`, `telefono`, `email`, `clientes_id`, `created_at`, `updated_at`)
+VALUES
+	(1,'Mauro Muñoz','56-43-2332976','mauro.munoz@ssbiobio.cl',2088,'2017-03-09 17:23:26','2017-03-09 17:23:26'),
+	(2,'René Antonio Astete Sepulveda','56-43-2332695','reneastete.udec@gmail.com',2113,'2017-03-09 17:24:31','2017-03-09 17:24:31'),
+	(3,'Gustavo Cid Beltran','56-43-2-332840','gustavo.cid@ssbiobio.cl',1548,'2017-03-09 17:25:23','2017-03-09 17:25:23'),
+	(4,'Evelin Alejandra Alfaro Perez','56-34-2490787','evelyn.alfaro@redsalud.gov.cl',4847,'2017-03-09 17:25:45','2017-03-09 17:25:45'),
+	(5,'Marian Pinochet Guerrero','56-72-2856049','salud@municipalidadplacilla.cl',3932,'2017-03-09 17:26:16','2017-03-09 17:26:16'),
+	(6,'Lissette Victoria Abalos Gomez','56-34-2492844','lissette.abalos@redsalud.gov.cl',1634,'2017-03-09 17:26:45','2017-03-09 17:26:45'),
+	(7,'YISLEN ELIANA ANDIA BARRA','56-43-2581611','yislen.andia@santabarbara.cl',3977,'2017-03-09 17:27:10','2017-03-09 17:27:10'),
+	(8,'Ana Luisa   Herrera Castillo','56-43-2336333','ana.herrera@ssbiobio.cl',5012,'2017-03-09 17:27:39','2017-03-09 17:27:39'),
+	(9,'Blanca Astudillo','56-53-2663885','blanca.astudillo@redsalud.gov.cl',2125,'2017-03-09 17:28:11','2017-03-09 17:28:11'),
+	(10,'Mirla Durán Pichilén','56-45-2842150','mirlasilvana16@gmail.com',3710,'2017-03-09 17:28:27','2017-03-09 17:28:27'),
+	(13,'Claudio Cesar Acuña Garrido','56-32-2370220','cacuna@dassanpedrodelapaz.cl',2786,'2017-03-09 17:31:12','2017-03-09 17:31:12');
+
+/*!40000 ALTER TABLE `contacto_clientes` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Volcado de tabla migrations
