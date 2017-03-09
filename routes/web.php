@@ -21,3 +21,4 @@ Route::get('/home', 'HomeController@index');
 Route::get('/listarbd', 'ListabdController@index');
 Route::resource('/getoc', 'ObtenerOCController');
 Route::resource('/cliente', 'ClienteController');
+Route::resource('/cliente/contacto', 'ClienteContactoController');
