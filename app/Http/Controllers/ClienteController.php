@@ -71,6 +71,16 @@ class ClienteController extends Controller
     public function show($id)
     {
         //
+         $comunas = DB::table('comunas')->get();
+           $ticket="0E1DFD13-C558-47B7-9E29-A07D8632FCC0";
+        $consulta="http://api.mercadopublico.cl/servicios/v1/publico/ordenesdecompra.json?codigo=".$id."&ticket=".$ticket;
+        $ocs = file_get_contents($consulta);
+        
+        $json = json_decode($ocs, true);
+        #return $json['MailContacto'];
+        #return $json;
+        return view('cliente.create', ['json' => $json],['comunas' => $comunas]);
+        //return view('cliente.create', [$id]);
     }
 
     /**

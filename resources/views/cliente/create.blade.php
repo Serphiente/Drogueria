@@ -14,32 +14,47 @@
                     {!!Form::text('id',null,['class'=>'form-control', 'placeholder'=>'Ingrese el id'])!!}
                 </div>
                  <div class="form-group">
+                  
                     {!!Form::label('rut')!!}
-                    {!!Form::text('rut',null,['class'=>'form-control', 'placeholder'=>'Ingrese el rut'])!!}
+                    {{--Pasando a string el valor del rut para poder trabajarlo luego--}}
+                    @php 
+                    $rut = (string)print_r($json['Listado']['0']['Comprador']['RutUnidad'],true);
+                    $dv = $rest = substr($rut, -1);
+                    $rut=substr($rut, 0, -2);
+                    $rut= str_replace(".","",$rut);
+                    @endphp
+
+                    {!!Form::text('rut',$rut,['class'=>'form-control', 'placeholder'=>'Ingrese el rut'])!!}
                 </div>
                 <div class="form-group">
                     {!!Form::label('dv')!!}
-                    {!!Form::text('dv',null,['class'=>'form-control', 'placeholder'=>'Ingrese el dv'])!!}
+                    {!!Form::text('dv',$dv,['class'=>'form-control', 'placeholder'=>'Ingrese el dv'])!!}
                 </div>
                  <div class="form-group">
                     {!!Form::label('nombre')!!}
-                    {!!Form::text('nombre',null,['class'=>'form-control', 'placeholder'=>'Ingrese el nombre'])!!}
+                    {!!Form::text('nombre',print_r($json['Listado']['0']['Comprador']['NombreOrganismo'],true),['class'=>'form-control', 'placeholder'=>'Ingrese el nombre'])!!}
                 </div>
                  <div class="form-group">
                     {!!Form::label('direccion_factura')!!}
-                    {!!Form::text('direccion_factura',null,['class'=>'form-control', 'placeholder'=>'Ingrese el direccion_factura'])!!}
+                    {!!Form::text('direccion_factura',print_r($json['Listado']['0']['Comprador']['DireccionUnidad'],true),['class'=>'form-control', 'placeholder'=>'Ingrese el direccion_factura'])!!}
                 </div>
                  <div class="form-group">
                     {!!Form::label('direccion_despacho')!!}
-                    {!!Form::text('direccion_despacho',null,['class'=>'form-control', 'placeholder'=>'Ingrese el direccion_despacho'])!!}
+                    {!!Form::text('direccion_despacho',print_r($json['Listado']['0']['Comprador']['DireccionUnidad'],true),['class'=>'form-control', 'placeholder'=>'Ingrese el direccion_despacho'])!!}
                 </div>
 
-               
+           
                 <div class="form-group">
                             <select name="comunas_id">
                             <option>Seleccione una comuna...</option>
                                 @foreach($comunas as $comuna)
-                                    <option value="{{$comuna->id}}">{{$comuna->nombre}}</option>
+                                  
+                                    @if ($comuna->nombre == print_r($json['Listado']['0']['Comprador']['ComunaUnidad'],true))
+                                       <option selected="selected" value="{{$comuna->id}}">{{$comuna->nombre}}</option>
+                                    @else
+                                       <option value="{{$comuna->id}}">{{$comuna->nombre}}</option>
+                                    @endif
+
                                 @endforeach
                             </select>
                         </div>
@@ -47,7 +62,14 @@
                         {!!Form::submit('Click Me!')!!}
               
                 {!!Form::close()!!}
-                    
+
+
+
+                <br>
+
+               <pre>
+                {{print_r($json)}}
+               </pre>
                 </div>
             </div>
         </div>
