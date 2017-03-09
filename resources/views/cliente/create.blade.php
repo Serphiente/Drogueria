@@ -7,6 +7,18 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Agregando clientes...</div>
 
+             
+               <script>
+                    function myFunction() {
+                        sweetAlert("Oops...", "Something went wrong!", "error");
+                    }
+                </script>
+
+                  <button onclick="myFunction()">Puto BOTON</button>
+
+
+               
+
                 <div class="panel-body">
                 {!!Form::open(['route'=>'cliente.store'])!!}
                 <div class="form-group">
