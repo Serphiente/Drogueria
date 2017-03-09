@@ -1,24 +1,29 @@
 @extends('layouts.app')
 
+@php
+
+$idxs = DB::table('clientes')->pluck('id');
+
+$codigo = print_r($json['Listado']['0']['Codigo'],true);
+$pos = strpos($codigo, "-");
+$codigo = substr($codigo, 0, $pos);
+
+
+foreach($idxs as $idx){
+    if($idx == $codigo){
+        echo "<h1>Cliente ya registrado</h1>";
+    }
+}
+
+@endphp
+
+
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Agregando clientes...</div>
-
-             
-               <script>
-                    function myFunction() {
-                        sweetAlert("Oops...", "Something went wrong!", "error");
-                    }
-                </script>
-
-                  <button onclick="myFunction()">Puto BOTON</button>
-
-
-               
-
                 <div class="panel-body">
                 {!!Form::open(['route'=>'cliente.store'])!!}
                 <div class="form-group">
@@ -82,7 +87,7 @@
               
                 {!!Form::close()!!}
 
-
+               
 
                 <br>
 
