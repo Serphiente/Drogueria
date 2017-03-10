@@ -25,8 +25,7 @@ class CreateContactoClientesTable extends Migration
 		
 		    $table->index('clientes_id','fk_contacto_cliente_cliente1_idx');
 		
-		    $table->foreign('clientes_id')
-		        ->references('id')->on('clientes');
+		   
 		
 		    $table->timestamps();
 		

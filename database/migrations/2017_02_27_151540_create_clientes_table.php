@@ -29,8 +29,7 @@ class CreateClientesTable extends Migration
 		
 		    $table->index('comunas_id','fk_clientes_comuna1_idx');
 		
-		    $table->foreign('comunas_id')
-		        ->references('id')->on('comunas');
+		   
 		
 		    $table->timestamps();
 		

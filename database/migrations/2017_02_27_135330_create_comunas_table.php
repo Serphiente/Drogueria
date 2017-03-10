@@ -22,8 +22,7 @@ class CreateComunasTable extends Migration
 		
 		    $table->index('provincia_id','fk_comunas_provincia1_idx');
 		
-		    $table->foreign('provincia_id')
-		        ->references('id')->on('provincias');
+		    
 		
 		    $table->timestamps();
 		

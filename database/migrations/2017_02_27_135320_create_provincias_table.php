@@ -22,8 +22,7 @@ class CreateProvinciasTable extends Migration
 		
 		    $table->index('regions_id','fk_provincias_regions_idx');
 		
-		    $table->foreign('regions_id')
-		        ->references('id')->on('regions');
+		   
 		
 		    $table->timestamps();
 		
