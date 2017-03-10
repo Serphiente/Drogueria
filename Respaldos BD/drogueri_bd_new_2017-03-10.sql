@@ -7,7 +7,7 @@
 #
 # Host: www.drogueriaconcepcion.cl (MySQL 5.5.5-10.0.29-MariaDB)
 # Base de datos: drogueri_bd_new
-# Tiempo de Generación: 2017-03-10 18:13:47 +0000
+# Tiempo de Generación: 2017-03-10 19:36:14 +0000
 # ************************************************************
 
 
@@ -494,6 +494,22 @@ CREATE TABLE `laboratorios` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+LOCK TABLES `laboratorios` WRITE;
+/*!40000 ALTER TABLE `laboratorios` DISABLE KEYS */;
+
+INSERT INTO `laboratorios` (`id`, `nombre`, `rut`, `dv`, `direccion`, `ciudad`, `telefono`, `email`, `created_at`, `updated_at`)
+VALUES
+	(1,'Clinical Market S.A.','76111113','2','Perez Valenzuela # 1087','118',NULL,NULL,NULL,NULL),
+	(2,'Drogueria Global Phama SPA','76389383','9','Av. Vicuña Mackenna # 1220','115',NULL,NULL,NULL,NULL),
+	(3,'Farmaceutica Insuval S.A.','77768990','8','Caupolicán # 1281','219',NULL,NULL,NULL,NULL),
+	(4,'Labotario Maver S.A.','92121000','0','Las Encinas # 1777','83',NULL,NULL,NULL,NULL),
+	(5,'Reutter S.A.','81210400','4','Av. El Salto # 4447','102',NULL,NULL,NULL,NULL),
+	(6,'Servicios y Comercializadora Farmacéutica S.A','76630750','7','San Francisco # 1599','127',NULL,NULL,NULL,NULL),
+	(7,'Farmaceutica Caribean LTDA.','76830090','9','Américo Vespucio # 138507','120',NULL,NULL,NULL,NULL),
+	(8,'ITF Labomed Farmacéutica LTDA.','96884770','8','Av. Cerro el Plomo # 5420 Of 1405','109',NULL,NULL,NULL,NULL);
+
+/*!40000 ALTER TABLE `laboratorios` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Volcado de tabla migrations
@@ -582,7 +598,7 @@ CREATE TABLE `productos` (
   `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `concentracion` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tipos_concentraciones_id` int(11) DEFAULT NULL,
-  `precio_bodega` int(11) NOT NULL,
+  `precio_bodega` double(11,0) NOT NULL,
   `presentaciones_farmacologicas_id` int(11) NOT NULL,
   `laboratorios_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -599,7 +615,7 @@ DROP TABLE IF EXISTS `proveedores`;
 
 CREATE TABLE `proveedores` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `rut` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `dv` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `direccion` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -611,6 +627,22 @@ CREATE TABLE `proveedores` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+LOCK TABLES `proveedores` WRITE;
+/*!40000 ALTER TABLE `proveedores` DISABLE KEYS */;
+
+INSERT INTO `proveedores` (`id`, `nombre`, `rut`, `dv`, `direccion`, `ciudad`, `telefono`, `email`, `created_at`, `updated_at`)
+VALUES
+	(1,'Clinical Market S.A.','76111113','2','Perez Valenzuela # 1087','118',NULL,NULL,NULL,NULL),
+	(2,'Drogueria Global Phama SPA','76389383','9','Av. Vicuña Mackenna # 1220','115',NULL,NULL,NULL,NULL),
+	(3,'Farmaceutica Insuval S.A.','77768990','8','Caupolicán # 1281','219',NULL,NULL,NULL,NULL),
+	(4,'Labotario Maver S.A.','92121000','0','Las Encinas # 1777','83',NULL,NULL,NULL,NULL),
+	(5,'Reutter S.A.','81210400','4','Av. El Salto # 4447','102',NULL,NULL,NULL,NULL),
+	(6,'Servicios y Comercializadora Farmacéutica S.A.','76630750','7','San Francisco # 1599','127',NULL,NULL,NULL,NULL),
+	(7,'Farmaceutica Caribean LTDA.','76830090','9','Américo Vespucio # 138507','120',NULL,NULL,NULL,NULL),
+	(8,'ITF Labomed Farmacéutica LTDA.','96884770','8','Av. Cerro el Plomo # 5420 Of 1405','109',NULL,NULL,NULL,NULL);
+
+/*!40000 ALTER TABLE `proveedores` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Volcado de tabla provincias
