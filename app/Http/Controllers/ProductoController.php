@@ -2,6 +2,8 @@
 
 namespace Drogueria\Http\Controllers;
 
+use Drogueria\Producto;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
@@ -13,7 +15,7 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
+        return view('producto.index');
     }
 
     /**
@@ -34,7 +36,10 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $parametros = $request->all();
+        Producto::create($parametros);
+
+        return back();
     }
 
     /**
