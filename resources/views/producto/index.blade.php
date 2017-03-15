@@ -15,6 +15,13 @@
 
                     {!!Form::text('nombre',null,['class'=>'form-control', 'placeholder'=>'Ingrese el nombre'])!!}
                 </div>
+                
+                 <div class="form-group">
+                    {!!Form::label('unidad_empaque')!!}<br>
+
+                    {!!Form::text('unidad_empaque',null,['class'=>'form-control', 'placeholder'=>'Ingrese las unidades por empaque'])!!}
+                </div>
+
 
                  <div class="form-group">               
                     {!!Form::label('concentracion')!!}
