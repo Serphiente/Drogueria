@@ -23,3 +23,4 @@ Route::resource('/getoc', 'ObtenerOCController');
 Route::resource('/cliente', 'ClienteController');
 Route::resource('/cliente/contacto', 'ClienteContactoController');
 Route::Resource('/producto', 'ProductoController');
+Route::Resource('/facturar', 'FacturarController');

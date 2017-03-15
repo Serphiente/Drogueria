@@ -503,4 +503,384 @@ VALUES
 	(2,'Drogueria Global Phama SPA','76389383','9','Av. Vicuña Mackenna # 1220','115',NULL,NULL,NULL,NULL),
 	(3,'Farmaceutica Insuval S.A.','77768990','8','Caupolicán # 1281','219',NULL,NULL,NULL,NULL),
 	(4,'Labotario Maver S.A.','92121000','0','Las Encinas # 1777','83',NULL,NULL,NULL,NULL),
-	(5,'Reutter S.A.','81210400','4','Av. El Salto
+	(5,'Reutter S.A.','81210400','4','Av. El Salto # 4447','102',NULL,NULL,NULL,NULL),
+	(6,'Servicios y Comercializadora Farmacéutica S.A','76630750','7','San Francisco # 1599','127',NULL,NULL,NULL,NULL),
+	(7,'Farmaceutica Caribean LTDA.','76830090','9','Américo Vespucio # 138507','120',NULL,NULL,NULL,NULL),
+	(8,'ITF Labomed Farmacéutica LTDA.','96884770','8','Av. Cerro el Plomo # 5420 Of 1405','109',NULL,NULL,NULL,NULL),
+	(9,'Valma',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(10,'Saval',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(11,'Genfar',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(12,'Andrómaco',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(13,'Mintlab',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(14,'Laboratorio Chile',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(99,'No Especificado',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+
+/*!40000 ALTER TABLE `laboratorios` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Volcado de tabla migrations
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `migrations`;
+
+CREATE TABLE `migrations` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+LOCK TABLES `migrations` WRITE;
+/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`)
+VALUES
+	(1,'2014_10_12_000000_create_users_table',1),
+	(2,'2014_10_12_100000_create_password_resets_table',1),
+	(3,'2017_02_27_135306_create_regions_table',1),
+	(4,'2017_02_27_135320_create_provincias_table',1),
+	(5,'2017_02_27_135330_create_comunas_table',1),
+	(6,'2017_02_27_151540_create_clientes_table',1);
+
+/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Volcado de tabla ocs
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `ocs`;
+
+CREATE TABLE `ocs` (
+  `codigo` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `proveedores_id` int(11) NOT NULL,
+  `productos_id` int(11) NOT NULL,
+  `precio` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`codigo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+
+# Volcado de tabla password_resets
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `password_resets`;
+
+CREATE TABLE `password_resets` (
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  KEY `password_resets_email_index` (`email`),
+  KEY `password_resets_token_index` (`token`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+
+# Volcado de tabla presentaciones_farmacologicas
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `presentaciones_farmacologicas`;
+
+CREATE TABLE `presentaciones_farmacologicas` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre_corto` varchar(4) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+LOCK TABLES `presentaciones_farmacologicas` WRITE;
+/*!40000 ALTER TABLE `presentaciones_farmacologicas` DISABLE KEYS */;
+
+INSERT INTO `presentaciones_farmacologicas` (`id`, `nombre`, `nombre_corto`, `created_at`, `updated_at`)
+VALUES
+	(1,'comprimido','comp',NULL,NULL),
+	(2,'sobre','sob',NULL,NULL),
+	(3,'frasco','fco',NULL,NULL),
+	(4,'ampolla','amp',NULL,NULL),
+	(5,'capsula','cap',NULL,NULL),
+	(6,'unidad','unid',NULL,NULL),
+	(7,'caja','caja',NULL,NULL),
+	(8,'comprimido recubierto','comr',NULL,NULL),
+	(9,'pomo','pomo',NULL,NULL);
+
+/*!40000 ALTER TABLE `presentaciones_farmacologicas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Volcado de tabla productos
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `productos`;
+
+CREATE TABLE `productos` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `unidad_empaque` int(11) DEFAULT NULL,
+  `concentracion` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tipos_concentraciones_id` int(11) DEFAULT NULL,
+  `precio_bodega` double(11,0) NOT NULL,
+  `presentaciones_farmacologicas_id` int(11) NOT NULL DEFAULT '1',
+  `laboratorios_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+LOCK TABLES `productos` WRITE;
+/*!40000 ALTER TABLE `productos` DISABLE KEYS */;
+
+INSERT INTO `productos` (`id`, `nombre`, `unidad_empaque`, `concentracion`, `tipos_concentraciones_id`, `precio_bodega`, `presentaciones_farmacologicas_id`, `laboratorios_id`, `created_at`, `updated_at`)
+VALUES
+	(1,'bioflora',6,'250mg',1,498,2,4,'2017-03-13 14:44:12','2017-03-13 14:44:12'),
+	(2,'dimecaina',NULL,'2%',2,2900,3,9,'2017-03-13 15:12:31','2017-03-13 15:12:31'),
+	(3,'ciprodex',NULL,NULL,3,12000,3,10,'2017-03-13 15:15:25','2017-03-13 15:15:25'),
+	(4,'t.r.o. 90',NULL,NULL,1,310,2,9,'2017-03-13 15:17:29','2017-03-13 15:17:29'),
+	(5,'ketoprofeno',NULL,'100mg',NULL,430,4,11,'2017-03-13 15:19:23','2017-03-13 15:19:23'),
+	(6,'polivitaminico',30,NULL,NULL,35,5,6,'2017-03-13 15:21:06','2017-03-13 15:21:06'),
+	(7,'lovastatina',1050,'20mg',NULL,13,1,12,'2017-03-13 15:34:59','2017-03-13 15:34:59'),
+	(8,'propanolol',1000,'40mg',NULL,9,1,13,'2017-03-13 15:42:28','2017-03-13 15:42:28'),
+	(9,'digoxina',1000,'0,25mg',NULL,20,1,2,'2017-03-13 15:49:38','2017-03-13 15:49:38'),
+	(10,'adroxef - cefadroxilo',NULL,'500mg/5ml',NULL,25900,3,14,'2017-03-13 15:50:57','2017-03-13 15:50:57'),
+	(11,'clorfenamina',NULL,'4mg',NULL,4,1,99,'2017-03-15 12:15:20','2017-03-15 12:15:20'),
+	(12,'eurovir - aciclovir',NULL,'800mg',1,1029,1,99,NULL,NULL),
+	(13,'clorpromazina',NULL,'25 mg/2ml',1,245,4,99,'2017-03-15 12:26:00','2017-03-15 12:26:00'),
+	(14,'isosorbide',1000,'10mg',NULL,12,1,99,'2017-03-15 12:30:00','2017-03-15 12:30:00'),
+	(15,'azatioprina',100,'50mg',NULL,390,1,99,'2017-03-15 12:31:15','2017-03-15 12:31:15'),
+	(16,'cotrimoxazol forte',NULL,'800mg/160mg',NULL,39,1,99,'2017-03-15 12:39:27','2017-03-15 12:39:27'),
+	(17,'largactil',20,'100mg',NULL,495,1,99,'2017-03-15 12:40:53','2017-03-15 12:40:53'),
+	(18,'carbón activado',1,'10gr',NULL,260,6,99,'2017-03-15 12:41:42','2017-03-15 12:41:42'),
+	(19,'melatonina',30,'3mg',NULL,68,5,99,'2017-03-15 12:42:45','2017-03-15 12:42:45'),
+	(20,'folacid',1000,'1mg',NULL,11,1,99,'2017-03-15 12:43:28','2017-03-15 12:43:28'),
+	(21,'zoperil',30,'7,5mg',NULL,30,8,99,'2017-03-15 12:44:48','2017-03-15 12:44:48'),
+	(22,'elixine',20,'250mg',NULL,500,1,99,'2017-03-15 12:45:11','2017-03-15 12:45:11'),
+	(23,'micopirox 8%',1,'5ml',NULL,17350,3,99,'2017-03-15 12:56:02','2017-03-15 12:56:02'),
+	(24,'ferranem',30,NULL,NULL,175,5,99,'2017-03-15 12:57:27','2017-03-15 12:57:27'),
+	(25,'bengue',1,NULL,NULL,825,9,99,'2017-03-15 12:58:46','2017-03-15 12:58:46');
+
+/*!40000 ALTER TABLE `productos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Volcado de tabla proveedores
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `proveedores`;
+
+CREATE TABLE `proveedores` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `rut` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `dv` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `direccion` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ciudad` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `telefono` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+LOCK TABLES `proveedores` WRITE;
+/*!40000 ALTER TABLE `proveedores` DISABLE KEYS */;
+
+INSERT INTO `proveedores` (`id`, `nombre`, `rut`, `dv`, `direccion`, `ciudad`, `telefono`, `email`, `created_at`, `updated_at`)
+VALUES
+	(1,'Clinical Market S.A.','76111113','2','Perez Valenzuela # 1087','118',NULL,NULL,NULL,NULL),
+	(2,'Drogueria Global Phama SPA','76389383','9','Av. Vicuña Mackenna # 1220','115',NULL,NULL,NULL,NULL),
+	(3,'Farmaceutica Insuval S.A.','77768990','8','Caupolicán # 1281','219',NULL,NULL,NULL,NULL),
+	(4,'Labotario Maver S.A.','92121000','0','Las Encinas # 1777','83',NULL,NULL,NULL,NULL),
+	(5,'Reutter S.A.','81210400','4','Av. El Salto # 4447','102',NULL,NULL,NULL,NULL),
+	(6,'Servicios y Comercializadora Farmacéutica S.A.','76630750','7','San Francisco # 1599','127',NULL,NULL,NULL,NULL),
+	(7,'Farmaceutica Caribean LTDA.','76830090','9','Américo Vespucio # 138507','120',NULL,NULL,NULL,NULL),
+	(8,'ITF Labomed Farmacéutica LTDA.','96884770','8','Av. Cerro el Plomo # 5420 Of 1405','109',NULL,NULL,NULL,NULL),
+	(99,'No Especificado',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+
+/*!40000 ALTER TABLE `proveedores` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Volcado de tabla provincias
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `provincias`;
+
+CREATE TABLE `provincias` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `regions_id` int(10) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_provincias_regions_idx` (`regions_id`),
+  CONSTRAINT `provincias_regions_id_foreign` FOREIGN KEY (`regions_id`) REFERENCES `regions` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+LOCK TABLES `provincias` WRITE;
+/*!40000 ALTER TABLE `provincias` DISABLE KEYS */;
+
+INSERT INTO `provincias` (`id`, `nombre`, `regions_id`, `created_at`, `updated_at`)
+VALUES
+	(1,'Arica',1,NULL,NULL),
+	(2,'Parinacota',1,NULL,NULL),
+	(3,'Iquique',2,NULL,NULL),
+	(4,'El Tamarugal',2,NULL,NULL),
+	(5,'Antofagasta',3,NULL,NULL),
+	(6,'El Loa',3,NULL,NULL),
+	(7,'Tocopilla',3,NULL,NULL),
+	(8,'Chañaral',4,NULL,NULL),
+	(9,'Copiapó',4,NULL,NULL),
+	(10,'Huasco',4,NULL,NULL),
+	(11,'Choapa',5,NULL,NULL),
+	(12,'Elqui',5,NULL,NULL),
+	(13,'Limarí',5,NULL,NULL),
+	(14,'Isla de Pascua',6,NULL,NULL),
+	(15,'Los Andes',6,NULL,NULL),
+	(16,'Petorca',6,NULL,NULL),
+	(17,'Quillota',6,NULL,NULL),
+	(18,'San Antonio',6,NULL,NULL),
+	(19,'San Felipe de Aconcagua',6,NULL,NULL),
+	(20,'Valparaiso',6,NULL,NULL),
+	(21,'Chacabuco',7,NULL,NULL),
+	(22,'Cordillera',7,NULL,NULL),
+	(23,'Maipo',7,NULL,NULL),
+	(24,'Melipilla',7,NULL,NULL),
+	(25,'Santiago',7,NULL,NULL),
+	(26,'Talagante',7,NULL,NULL),
+	(27,'Cachapoal',8,NULL,NULL),
+	(28,'Cardenal Caro',8,NULL,NULL),
+	(29,'Colchagua',8,NULL,NULL),
+	(30,'Cauquenes',9,NULL,NULL),
+	(31,'Curicó',9,NULL,NULL),
+	(32,'Linares',9,NULL,NULL),
+	(33,'Talca',9,NULL,NULL),
+	(34,'Arauco',10,NULL,NULL),
+	(35,'Bio Bío',10,NULL,NULL),
+	(36,'Concepción',10,NULL,NULL),
+	(37,'Ñuble',10,NULL,NULL),
+	(38,'Cautín',11,NULL,NULL),
+	(39,'Malleco',11,NULL,NULL),
+	(40,'Valdivia',12,NULL,NULL),
+	(41,'Ranco',12,NULL,NULL),
+	(42,'Chiloé',13,NULL,NULL),
+	(43,'Llanquihue',13,NULL,NULL),
+	(44,'Osorno',13,NULL,NULL),
+	(45,'Palena',13,NULL,NULL),
+	(46,'Aisén',14,NULL,NULL),
+	(47,'Capitán Prat',14,NULL,NULL),
+	(48,'Coihaique',14,NULL,NULL),
+	(49,'General Carrera',14,NULL,NULL),
+	(50,'Antártica Chilena',15,NULL,NULL),
+	(51,'Magallanes',15,NULL,NULL),
+	(52,'Tierra del Fuego',15,NULL,NULL),
+	(53,'Última Esperanza',15,NULL,NULL);
+
+/*!40000 ALTER TABLE `provincias` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Volcado de tabla regions
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `regions`;
+
+CREATE TABLE `regions` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ordinal` varchar(4) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+LOCK TABLES `regions` WRITE;
+/*!40000 ALTER TABLE `regions` DISABLE KEYS */;
+
+INSERT INTO `regions` (`id`, `nombre`, `ordinal`, `created_at`, `updated_at`)
+VALUES
+	(1,'Arica y Parinacota','XV',NULL,NULL),
+	(2,'Tarapacá','I',NULL,NULL),
+	(3,'Antofagasta','II',NULL,NULL),
+	(4,'Atacama','III',NULL,NULL),
+	(5,'Coquimbo','IV',NULL,NULL),
+	(6,'Valparaiso','V',NULL,NULL),
+	(7,'Metropolitana de Santiago','RM',NULL,NULL),
+	(8,'Libertador General Bernardo O\'Higgins','VI',NULL,NULL),
+	(9,'Maule','VII',NULL,NULL),
+	(10,'Biobío','VIII',NULL,NULL),
+	(11,'La Araucanía','IX',NULL,NULL),
+	(12,'Los Ríos','XIV',NULL,NULL),
+	(13,'Los Lagos','X',NULL,NULL),
+	(14,'Aisén del General Carlos Ibáñez del Campo','XI',NULL,NULL),
+	(15,'Magallanes y de la Antártica Chilena','XII',NULL,NULL);
+
+/*!40000 ALTER TABLE `regions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Volcado de tabla tipos_concentraciones
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `tipos_concentraciones`;
+
+CREATE TABLE `tipos_concentraciones` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT '',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+LOCK TABLES `tipos_concentraciones` WRITE;
+/*!40000 ALTER TABLE `tipos_concentraciones` DISABLE KEYS */;
+
+INSERT INTO `tipos_concentraciones` (`id`, `nombre`, `created_at`, `updated_at`)
+VALUES
+	(1,'',NULL,NULL),
+	(2,'gel oral',NULL,NULL),
+	(3,'gotas óticas',NULL,NULL),
+	(4,'jarabe',NULL,NULL);
+
+/*!40000 ALTER TABLE `tipos_concentraciones` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Volcado de tabla users
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `users`;
+
+CREATE TABLE `users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`)
+VALUES
+	(1,'Jonathan Isla','jisla@drogueriaconcepcion.cl','$2y$10$3qBtaBBbtm9ZsPoVULTYLeRi2KKX/E2Cv6ac8o13OG67KnbQJLfPe','dGijKFdjIFNUw6nVe3lBMbN1VH0pSuHafiADArp1oQrrDyg0UBwndhL3Ipi7','2017-03-08 18:06:12','2017-03-08 18:06:12');
+
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
