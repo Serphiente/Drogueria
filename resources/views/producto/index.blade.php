@@ -15,17 +15,17 @@
 
                     {!!Form::text('nombre',null,['class'=>'form-control', 'placeholder'=>'Ingrese el nombre'])!!}
                 </div>
+
                 
+                 <div class="form-group">               
+                    {!!Form::label('concentracion')!!}
+                    {!!Form::text('concentracion',null,['class'=>'form-control', 'placeholder'=>'Ingrese el concentracion'])!!}
+                </div>
+
                  <div class="form-group">
                     {!!Form::label('unidad_empaque')!!}<br>
 
                     {!!Form::text('unidad_empaque',null,['class'=>'form-control', 'placeholder'=>'Ingrese las unidades por empaque'])!!}
-                </div>
-
-
-                 <div class="form-group">               
-                    {!!Form::label('concentracion')!!}
-                    {!!Form::text('concentracion',null,['class'=>'form-control', 'placeholder'=>'Ingrese el concentracion'])!!}
                 </div>
 
                 <div class="form-group">
@@ -56,7 +56,12 @@
                     <select name="laboratorios_id">
                     <option disabled selected value>Seleccione un Laboratorio..</option>
                         @foreach($laboratorios as $lab)
-                                <option value="{{$lab->id}}">{{$lab->nombre}}</option>
+                        @if($lab->id = 99)
+                         <option selected value="{{$lab->id}}">{{$lab->nombre}}</option>
+                        @else
+                         <option value="{{$lab->id}}">{{$lab->nombre}}</option>
+                        @endif
+                               
                         @endforeach
                     </select>
                 </div>
@@ -91,6 +96,7 @@
                 <tr> 
                     <th>#</th> 
                     <th>Nombre</th> 
+                    <th>Unid Empaque</th> 
                     <th>Concentración</th> 
                     <th>Precio Bodega</th> 
                 </tr> 
@@ -103,8 +109,9 @@
                 <tr> 
                     <th scope="row">{{$med->id}}</th> 
                     <td>{{$med->nombre}}</td> 
+                    <td>{{$med->unidad_empaque}}</td> 
                     <td>{{$med->concentracion}}</td> 
-                    <td>{{$med->precio_bodega}}</td> 
+                    <td>$ {{number_format($med->precio_bodega, 0, ',', '.')}}</td> 
                     </tr> 
                 @endforeach
                 
