@@ -297,7 +297,7 @@ class ComposerStaticInit180fa68d91dfeea2e68a5aa9cd3555c1
         'CreateRegionsTable' => __DIR__ . '/../..' . '/database/migrations/2017_02_27_135306_create_regions_table.php',
         'CreateTiposConcentracionesTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_10_141806_create_tipos_concentraciones_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
-        'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
+        'CreateVendedorsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_15_191702_create_vendedors_table.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
         'File_Iterator_Factory' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Factory.php',
