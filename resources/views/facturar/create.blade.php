@@ -48,11 +48,15 @@
                         <option disabled selected value>Seleccione un Vendedor</option>
 
                         @foreach($usuarios as $user)
+                        @if(isset($datos_factura))
                             @if($datos_factura[0]->users_id == $user->id)
                             <option selected value="{{$user->id}}">{{$user->name}} {{$user->last_name}}</option>
                             @else
                             <option value="{{$user->id}}">{{$user->name}} {{$user->last_name}}</option>
                             @endif
+                        @else
+                            <option value="{{$user->id}}">{{$user->name}} {{$user->last_name}}</option>
+                        @endif
                         @endforeach
 
                         </select>
@@ -64,11 +68,16 @@
                     <select name="clientes_id">
                     <option disabled selected value>Seleccione un Proveedor</option>
                         @foreach($clientes as $cliente)
+
+                        @if(isset($datos_factura))
                         @if($datos_factura[0]->clientes_id == $cliente->id)
                          <option selected value="{{$cliente->id}}">{{$cliente->id}} {{$cliente->nombre}}</option>
                         @else
                          <option value="{{$cliente->id}}">{{$cliente->id}} {{$cliente->nombre}}</option>
                         @endif
+                        @else
+                        <option value="{{$cliente->id}}">{{$cliente->id}} {{$cliente->nombre}}</option>
+                         @endif
                                
                         @endforeach
                     </select>
@@ -154,6 +163,9 @@
                     <th>{{ucwords($np->nombre)}} {{ucwords($np->concentracion)}} {{$np->unidad_empaque}} @foreach($presentacion as $pre) {{$pre->nombre}} @endforeach</th> 
                     <th>{{$item_factura->cantidad}}</th> 
                     <th>$ {{$item_factura->precio}}</th> 
+                    @php 
+                        $total_neto = $total_neto +($item_factura->cantidad * $item_factura->precio);
+                    @endphp
                     <th>$ {{number_format($item_factura->cantidad * $item_factura->precio, 0, ',', '.')}}</th> 
                     <th><a href="#">Editar</a> | <a href="#">Eliminar</a> </th> 
                     @endforeach
@@ -163,11 +175,11 @@
                 <table class="table table-striped">
                  <tr> 
                     <th>Total Neto</th> 
-                    <th>111</th> 
+                    <th>{{$total_neto}}</th> 
                     <th>| IVA</th> 
-                    <th>$$$$$</</th> 
+                    <th>{{$total_neto * 0.19}}</</th> 
                     <th>| Total</th> 
-                    <th>$$$$$</</th> 
+                    <th>{{$total_neto * 1.19}}</th> 
                  </tr> 
                  </table>
                   @endif
