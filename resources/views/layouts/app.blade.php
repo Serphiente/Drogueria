@@ -10,18 +10,25 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Styles -->
+<!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet">
+
+
 
     <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-    <script src="{{ asset('js/sweetalert.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+  
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+
+      
+    
+
+   
 </head>
 <body>
     <div id="app">

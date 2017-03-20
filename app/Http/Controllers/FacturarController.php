@@ -3,6 +3,8 @@
 namespace Drogueria\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Drogueria\Oc;
+use Illuminate\Support\Facades\DB;
 
 class FacturarController extends Controller
 {
@@ -43,7 +45,9 @@ class FacturarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $parametros = $request->all();
+        OC::create($parametros);
+         return redirect('facturar/706');
     }
 
     /**
