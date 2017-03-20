@@ -26,7 +26,8 @@
 
                 <tr> 
                     <th>Folio Factura</th> 
-                    <th><input type="text" name="folio" step="1" min="2016-01-01"  value="{{$oc}}" readonly></th> 
+                    <th><a href="/facturar/{{$oc-1}}"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></a>
+                    <input type="text" name="folio" step="1" min="2016-01-01"  value="{{$oc}}" readonly> <a href="/facturar/{{$oc+1}}"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></a></th> 
                 </tr> 
 
                 <tr>
@@ -66,7 +67,7 @@
                     <th>Cliente</th> 
                     <th>
                     <select name="clientes_id">
-                    <option disabled selected value>Seleccione un Proveedor</option>
+                    <option disabled selected value>Seleccione un Cliente</option>
                         @foreach($clientes as $cliente)
 
                         @if(isset($datos_factura))

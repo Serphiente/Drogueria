@@ -47,7 +47,7 @@ class FacturarController extends Controller
     {
         $parametros = $request->all();
         OC::create($parametros);
-         return redirect('facturar/706');
+         return redirect('facturar/' . $request->input('folio'));
     }
 
     /**
