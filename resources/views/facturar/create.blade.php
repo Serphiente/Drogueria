@@ -40,7 +40,7 @@
                      <input type="date" name="fecha" step="1" min="2016-01-01"  value="{{date("Y-m-d")}}">
                     @endif
                        
-                    </th>
+                    </th>a
                 </tr>
                 <tr>
                     <th>Vendedor</th>
